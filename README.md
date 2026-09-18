@@ -40,8 +40,8 @@ Jalankan `supabase/media.sql` di Dashboard → SQL Editor. Buat tabel `public.me
 Simpan `s0` (original) di DB. Preview pakai varian dinamis `lib/image.ts`:
 `s0` → `s1600` / `w640-h480` / `w320-h240` / `w200-h150` via `bloggerVariant(url, variant)`. Grid pakai `w320` (~35KB) bukan `s1600` (~400KB). Lihat `docs/blog_image_format.html`.
 
-## Vercel Cron (Keep-Alive Free Tier)
-`vercel.json` → `0 6 * * 1,3,5` → `GET /api/cron/keep-alive` (query `media limit 1`). Backup: `.github/workflows/supabase-keep-alive.yml`.
+## Vercel Cron (Keep-Alive Free Tier & Auto Manifest Sync)
+`vercel.json` → `0 1 * * *` (setiap hari jam 01:00 UTC) → `GET /api/cron/keep-alive` (query Supabase keep-alive + auto-sync manifest backup ke GitHub).
 
 ## Scripts
 `npm run dev` | `npm run build` | `npm run start`
